@@ -1,24 +1,27 @@
 project(xpick)
 cmake_minimum_required(VERSION 3.5.0)
 
-if(WITH_DEBUG)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g3 -O0")
-endif()
-
 include(FindPkgConfig)
-
 pkg_check_modules(
     XCB_LIBS
         xcb
     REQUIRED
 )
 
-include_directories(src)
+if(WITH_DEBUG)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g3 -O0")
+endif()
 
 add_executable(
     xpick
-        src/demo.c
+        demo/demo.c
         src/xpick.c
+)
+
+target_include_directories(
+    xpick
+    PRIVATE
+        src/
 )
 
 target_link_libraries(
