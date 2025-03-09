@@ -1,5 +1,5 @@
-project(xpick)
 cmake_minimum_required(VERSION 3.5.0)
+project(xpick)
 
 include(FindPkgConfig)
 pkg_check_modules(
